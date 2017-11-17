@@ -4,26 +4,17 @@ select.addEventListener('change', filter);
 
 function filter(e) {
   var optionSelected = e.target.value;
-
-  if(optionSelected === 'original') {
-    for (var i = 0; i < images.length; i++) {
-      images[i].classList.remove('sepia', 'white-black', 'negative-color');
-    }
-  } else if (optionSelected === 'sepia') {
-    for (var i = 0; i < images.length; i++) {
-      images[i].classList.remove('white-black', 'negative-color');
-      images[i].classList.add('sepia');
-    }
-  } else if (optionSelected === 'white-black') {
-    for (var i = 0; i < images.length; i++) {
-      images[i].classList.remove('sepia', 'negative-color');
-      images[i].classList.add('white-black');
-    }
-  } else if (optionSelected === 'negative-color') {
-    for (var i = 0; i < images.length; i++) {
-      images[i].classList.remove('sepia', 'white-black');
-      images[i].classList.add('negative-color');
+  for (var i = 1; i < select.length; i++) {
+    if (optionSelected === select[i].value) {
+      //Agrega las classes
+      for (var j = 0; j < images.length; j++) {
+        images[j].classList.add(select[i].value);
+      }
+    } else {
+      //Quita las clases que no sean iguales al que se encontro
+      for (var j = 0; j < images.length; j++) {
+        images[j].classList.remove(select[i].value);
+      }
     }
   }
 }
-
